@@ -10,7 +10,7 @@ services:
     env_file: 
       - .env
     image: web
-    restart: "on-failure"
+    restart: "unless-stopped"
   
   django-q:
     build:
@@ -21,6 +21,7 @@ services:
       - static_volume:/home/app/code/static
     depends_on:
       - web
+    restart: "unless-stopped"
   
   nginx:
     build: 
